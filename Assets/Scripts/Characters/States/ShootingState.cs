@@ -21,9 +21,15 @@ public class ShootingState : StateComponent
         shootingRoutine = StartCoroutine(Shooting());
     }
 
+    private void OnDisable()
+    {
+        if(shootingRoutine != null)
+            StopCoroutine(shootingRoutine);
+    }
+
     private IEnumerator Shooting()
     {
-        Debug.Log("SHOTING BULLET");
+        Debug.Log("SHOOTING BULLET");
 
         yield return new WaitForSeconds(attackSpeed);
         if (target)
@@ -32,7 +38,6 @@ public class ShootingState : StateComponent
                 shootingRoutine = StartCoroutine(Shooting());
             else
             {
-                StopCoroutine(shootingRoutine);
                 manager.ChangeState("TARGETING");
             }
         }

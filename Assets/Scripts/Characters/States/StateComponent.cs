@@ -16,7 +16,15 @@ public class StateComponent : MonoBehaviour
 
     private void OnStateChanged(ScriptableState state)
     {
-        this.enabled = HasActiveState(state);
+        bool enable = HasActiveState(state);
+
+        if (!enable && this.enabled)
+            OnStateDisable();
+
+        if(enabled && !this.enabled)
+            OnStateEnable();
+
+        this.enabled = enable;
     }
 
     private bool HasActiveState(ScriptableState state)
@@ -28,4 +36,9 @@ public class StateComponent : MonoBehaviour
 
         return false;
     }
+
+    protected virtual void OnStateEnable()
+    { }
+    protected virtual void OnStateDisable()
+    { }
 }
