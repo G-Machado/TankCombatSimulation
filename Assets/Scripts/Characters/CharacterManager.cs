@@ -11,9 +11,12 @@ public class CharacterManager : StateController
         public int movSpeed;
         public int baseRotSpeed;
         public int canonRotSpeed;
+        public float attackSpeed;
+        public float range;
     }
     public statsData stats;
 
+    public bool targetAtRange;
     public Transform target;
 
     private void Awake()
@@ -31,10 +34,12 @@ public class CharacterManager : StateController
         stats.movSpeed = scriptableStats.movSpeed;
         stats.baseRotSpeed = scriptableStats.baseRotSpeed;
         stats.canonRotSpeed = scriptableStats.canonRotSpeed;
+        stats.attackSpeed = scriptableStats.weapon.attackSpeed;
+        stats.range = scriptableStats.weapon.range;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        targetAtRange = (target.position - transform.position).sqrMagnitude < stats.range * stats.range;
     }
 }

@@ -1,18 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingState : MonoBehaviour
+public class ShootingState : StateComponent
 {
-    // Start is called before the first frame update
+    private CharacterManager manager;
+    private float attackSpeed;
+    private Transform target;
+
+    private Coroutine shootingRoutine; // should be placed at OnStateExit
+
     void Start()
     {
-        
+        manager = (CharacterManager)controller;
+        attackSpeed = manager.stats.attackSpeed;
+        target = manager.target;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        shootingRoutine = StartCoroutine(Shooting());
+    }
+
+    private IEnumerator Shooting()
+    {
+        Debug.Log("SHOTING BULLET");
+
+        yield return new WaitForSeconds(attackSpeed);
+        if (target)
+        {
+            if (manager.targetAtRange)
+                shootingRoutine = StartCoroutine(Shooting());
+            else
+            {
+                StopCoroutine(shootingRoutine);
+                manager.ChangeState("TARGETING");
+            }
+        }
+
     }
 }

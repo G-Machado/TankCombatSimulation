@@ -18,6 +18,17 @@ public class TargetingState : StateComponent
 
     void FixedUpdate()
     {
+        if(!target)
+        {
+            return;
+        }
+
+        if (!manager.targetAtRange)
+        { 
+            manager.ChangeState("CHASING"); 
+            return; 
+        }
+
         // Correct tank canon rotation
         Vector3 targetDir = (target.position - transform.position).normalized;
         float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);

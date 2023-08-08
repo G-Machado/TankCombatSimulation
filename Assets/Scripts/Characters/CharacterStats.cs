@@ -7,6 +7,5 @@ public class CharacterStats : ScriptableObject
     public int movSpeed;
     public int baseRotSpeed; // y axis
     public int canonRotSpeed; // y axis
-
-    //[SerializeField] private WeaponStats weapon;
+    public WeaponStats weapon;
 }

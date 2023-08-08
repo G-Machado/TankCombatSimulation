@@ -7,14 +7,11 @@ public class ChasingState : StateComponent
     [SerializeField] private Transform tankBase;
     [SerializeField] private float rotThreshold;
 
-    [SerializeField] private float range;
-    private bool atRange
-    { get { return (target.position - transform.position).sqrMagnitude < range * range; } }
-
     private CharacterManager manager;
     private Transform target;
     private int movSpeed;
     private int rotSpeed;
+    private float range;
 
     void Start()
     {
@@ -23,11 +20,12 @@ public class ChasingState : StateComponent
         movSpeed = manager.stats.movSpeed;
         rotSpeed = manager.stats.baseRotSpeed;
         target = manager.target;
+        range = manager.stats.range;
     }
 
     void FixedUpdate()
     {
-        if(!atRange)
+        if(!manager.targetAtRange)
         {
             Vector3 targetDir = (target.position - transform.position).normalized;
             float dotFactor = Vector3.Dot(tankBase.forward, targetDir);

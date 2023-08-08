@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,7 +22,7 @@ public class StateController : MonoBehaviour
         bool changed = false;
         for (int i = 0; i < possibleStates.Length; i++)
         {
-            if(possibleStates[i].name.Equals(stateName))
+            if (possibleStates[i].name.Equals(stateName))
             {
                 stateIndex = i;
                 OnStateChanged.Invoke(currentState);
