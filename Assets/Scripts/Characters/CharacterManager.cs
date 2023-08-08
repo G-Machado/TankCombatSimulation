@@ -1,18 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManager : MonoBehaviour
+[DefaultExecutionOrder(-1)]
+public class CharacterManager : StateController
 {
-    public CharacterStats stats;
+    [SerializeField] private CharacterStats scriptableStats;
 
-    // Start is called before the first frame update
-    void Start()
+    public struct statsData
     {
-        
+        public int health;
+        public int movSpeed;
+        public int baseRotSpeed;
+        public int canonRotSpeed;
+    }
+    public statsData stats;
+
+    public Transform target;
+
+    private void Awake()
+    {
+        LoadStats();
     }
 
-    // Update is called once per frame
+    protected override void Start()
+    {
+        base.Start();
+    }
+    private void LoadStats()
+    {
+        stats.health = scriptableStats.health;
+        stats.movSpeed = scriptableStats.movSpeed;
+        stats.baseRotSpeed = scriptableStats.baseRotSpeed;
+        stats.canonRotSpeed = scriptableStats.canonRotSpeed;
+    }
+
     void Update()
     {
         

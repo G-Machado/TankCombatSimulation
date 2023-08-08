@@ -1,33 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChasingState : MonoBehaviour
+public class ChasingState : StateComponent
 {
-    [SerializeField] private CharacterManager manager;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform tankBase;
-    [SerializeField] private Transform target;
     [SerializeField] private float rotThreshold;
 
     [SerializeField] private float range;
     private bool atRange
     { get { return (target.position - transform.position).sqrMagnitude < range * range; } }
 
+    private CharacterManager manager;
+    private Transform target;
     private int movSpeed;
     private int rotSpeed;
 
     void Start()
     {
+        manager = (CharacterManager) controller;
+
         movSpeed = manager.stats.movSpeed;
-        rotSpeed = manager.stats.rotSpeed;
+        rotSpeed = manager.stats.baseRotSpeed;
+        target = manager.target;
     }
 
     void FixedUpdate()
     {
         if(!atRange)
         {
-            // Correct tank base rotation
             Vector3 targetDir = (target.position - transform.position).normalized;
             float dotFactor = Vector3.Dot(tankBase.forward, targetDir);
             float yAngle = tankBase.eulerAngles.y;
@@ -48,6 +49,7 @@ public class ChasingState : MonoBehaviour
         {
             // Change state
             rb.velocity = Vector3.zero;
+            controller.ChangeState("TARGETING");
         }
     }
 }
