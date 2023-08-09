@@ -10,11 +10,11 @@ public class CharacterSpawner : MonoBehaviour
         Instance = this;
     }
 
-    public List<CharacterManager> charactersAlive; // this should be array
+    public List<CharacterManager> charactersAlive; // this could be an array
 
     public CharacterManager GetRandomTarget(CharacterManager attacker)
     {
-        List<CharacterManager> copyAlive = new List<CharacterManager>();
+        List<CharacterManager> copyAlive = new List<CharacterManager>(); // this should be an array
 
         for (int i = 0; i < charactersAlive.Count; i++)
         {

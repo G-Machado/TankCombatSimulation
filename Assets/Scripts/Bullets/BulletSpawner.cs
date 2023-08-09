@@ -10,9 +10,9 @@ public class BulletSpawner : MonoBehaviour
         Instance = this;
     }
 
-
     public void SpawnBullet(ScriptableBullet bullet, Vector3 position, Quaternion rotation)
     {
         GameObject bulletClone = Instantiate(bullet.prefab, position, rotation);
+        bulletClone.GetComponent<BulletManager>().SetupData(bullet);
     }
 }

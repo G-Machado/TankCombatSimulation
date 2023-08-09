@@ -18,9 +18,9 @@ public class StateComponent : MonoBehaviour
     {
         bool enable = HasActiveState(state);
 
-        if (!enable)
+        if (!enable && enabled)
             OnStateDisable();
-        else
+        else if(enable)
             OnStateEnable();
 
         this.enabled = enable;

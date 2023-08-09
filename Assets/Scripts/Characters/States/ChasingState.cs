@@ -33,6 +33,7 @@ public class ChasingState : StateComponent
 
         if(!manager.targetAtRange)
         {
+            // Rotate tank base
             Vector3 targetDir = (target.position - transform.position).normalized;
             float dotFactor = Vector3.Dot(tankBase.forward, targetDir);
             float yAngle = tankBase.eulerAngles.y;

@@ -20,26 +20,13 @@ public class CharacterManager : StateController
     public ScriptableBullet bullet;
 
     public Transform target;
-    //{ 
-    //    get 
-    //    {
-    //        if (_target == null)
-    //            CharacterSpawner.Instance.GetRandomTarget(this).transform;
-    //        return _target;
-    //    } 
-    //}
-    //public Transform _target;
 
     private void Awake()
     {
-        LoadStats();
+        SetupData();
     }
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-    private void LoadStats()
+    public void SetupData()
     {
         stats.health = scriptableStats.health;
         stats.movSpeed = scriptableStats.movSpeed;

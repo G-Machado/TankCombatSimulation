@@ -11,7 +11,7 @@ public class ShootingState : StateComponent
     private Transform target
     { get { return manager.target; } }
 
-    private Coroutine shootingRoutine; // should be placed at OnStateExit
+    private Coroutine shootingRoutine;
 
     protected override void Awake()
     {
@@ -26,7 +26,7 @@ public class ShootingState : StateComponent
         shootingRoutine = StartCoroutine(Shooting());
     }
 
-    private void OnDisable()
+    protected override void OnStateDisable()
     {
         if(shootingRoutine != null)
             StopCoroutine(shootingRoutine);
