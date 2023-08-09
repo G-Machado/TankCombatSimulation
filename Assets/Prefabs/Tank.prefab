@@ -391,7 +391,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!114 &1859810872303058587
 MonoBehaviour:
@@ -414,6 +414,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scriptableStats: {fileID: 11400000, guid: ed902bcd3bca1634da68b83084874892, type: 2}
+  deathExplosionFX: {fileID: 11400000, guid: f965c5ce7fdd0cb409e8646ac262af2b, type: 2}
   targetAtRange: 0
   bullet: {fileID: 0}
   target: {fileID: 0}

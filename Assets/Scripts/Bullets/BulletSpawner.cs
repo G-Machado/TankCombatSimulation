@@ -12,7 +12,7 @@ public class BulletSpawner : MonoBehaviour
 
     public void SpawnBullet(ScriptableBullet bullet, Vector3 position, Quaternion rotation)
     {
-        GameObject bulletClone = Instantiate(bullet.prefab, position, rotation);
-        bulletClone.GetComponent<BulletManager>().SetupData(bullet);
+        //GameObject bulletClone = Instantiate(bullet.prefab, position, rotation, transform);
+        //bulletClone.GetComponent<BulletManager>().SetupData(bullet);
     }
 }

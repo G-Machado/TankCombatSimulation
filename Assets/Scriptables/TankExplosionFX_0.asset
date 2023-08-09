@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453b529336a89c64cb3ac5065da9ef40, type: 3}
-  m_Name: Bullet_0
+  m_Script: {fileID: 11500000, guid: 788dc7fa4f1b07240b43f56b4a151cc8, type: 3}
+  m_Name: TankExplosionFX_0
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7665946847355606871, guid: 770ef8af0b5c105488c74c243d5fc576, type: 3}
-  damage: 25
-  speed: 4
-  particleFX: {fileID: 11400000, guid: 8013923ce1558a84483ca7358911c47d, type: 2}
+  prefab: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(menuName = "Scriptables/State")]
+[CreateAssetMenu(menuName = "Variables/State")]
 public class ScriptableState : ScriptableObject
 {   }

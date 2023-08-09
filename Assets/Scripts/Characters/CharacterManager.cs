@@ -4,7 +4,7 @@ using UnityEngine;
 public class CharacterManager : StateController
 {
     [SerializeField] private CharacterStats scriptableStats;
-
+    [SerializeField] private ScriptableFX deathExplosionFX;
     public struct statsData
     {
         public int health;
@@ -50,8 +50,9 @@ public class CharacterManager : StateController
         
         if (stats.health <= 0)
         {
-            Debug.Log("DEAD TANK");
             CharacterSpawner.Instance.charactersAlive.Remove(this);
+
+            deathExplosionFX.Spawn(transform.position);
             Destroy(this.gameObject);
         }
     }
