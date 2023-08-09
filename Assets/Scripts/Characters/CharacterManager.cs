@@ -17,7 +17,18 @@ public class CharacterManager : StateController
     public statsData stats;
 
     public bool targetAtRange;
+    public ScriptableBullet bullet;
+
     public Transform target;
+    //{ 
+    //    get 
+    //    {
+    //        if (_target == null)
+    //            CharacterSpawner.Instance.GetRandomTarget(this).transform;
+    //        return _target;
+    //    } 
+    //}
+    //public Transform _target;
 
     private void Awake()
     {
@@ -36,10 +47,25 @@ public class CharacterManager : StateController
         stats.canonRotSpeed = scriptableStats.canonRotSpeed;
         stats.attackSpeed = scriptableStats.weapon.attackSpeed;
         stats.range = scriptableStats.weapon.range;
+
+        bullet = scriptableStats.weapon.bullet;
     }
 
     void FixedUpdate()
     {
-        targetAtRange = (target.position - transform.position).sqrMagnitude < stats.range * stats.range;
+        if(target)
+            targetAtRange = (target.position - transform.position).sqrMagnitude < stats.range * stats.range;
+    }
+
+    public void DealDamage(int damage)
+    {
+        stats.health -= damage;
+        
+        if (stats.health <= 0)
+        {
+            Debug.Log("DEAD TANK");
+            CharacterSpawner.Instance.charactersAlive.Remove(this);
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -8,23 +8,29 @@ public class ChasingState : StateComponent
     [SerializeField] private float rotThreshold;
 
     private CharacterManager manager;
-    private Transform target;
+    private Transform target
+    { get { return manager.target; } }
     private int movSpeed;
     private int rotSpeed;
-    private float range;
 
-    void Start()
+    protected override void Awake()
     {
-        manager = (CharacterManager) controller;
+        base.Awake();
+
+        manager = (CharacterManager)controller;
 
         movSpeed = manager.stats.movSpeed;
         rotSpeed = manager.stats.baseRotSpeed;
-        target = manager.target;
-        range = manager.stats.range;
     }
 
     void FixedUpdate()
     {
+        if (!target)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
+
         if(!manager.targetAtRange)
         {
             Vector3 targetDir = (target.position - transform.position).normalized;
@@ -48,6 +54,16 @@ public class ChasingState : StateComponent
             // Change state
             rb.velocity = Vector3.zero;
             controller.ChangeState("TARGETING");
+        }
+    }
+
+    protected override void OnStateEnable()
+    {
+        if (manager.target == null)
+        {
+            CharacterManager target = CharacterSpawner.Instance.GetRandomTarget(manager);
+            if(target)
+                manager.target = target.transform;
         }
     }
 }

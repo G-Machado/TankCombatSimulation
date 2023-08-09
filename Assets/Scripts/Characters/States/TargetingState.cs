@@ -4,26 +4,23 @@ public class TargetingState : StateComponent
 {
     [SerializeField] private Transform tankCanon;
     [SerializeField] private float rotThreshold;
-    
-    private Transform target;
+
+    private Transform target
+    { get { return manager.target; } }
     private CharacterManager manager;
     private int rotSpeed;
+
+    public bool atAim = false;
 
     void Start()
     {
         manager = (CharacterManager)controller;
         rotSpeed = manager.stats.canonRotSpeed;
-        target = manager.target;
     }
 
     void FixedUpdate()
     {
-        if(!target)
-        {
-            return;
-        }
-
-        if (!manager.targetAtRange)
+        if (!manager.targetAtRange || target == null)
         { 
             manager.ChangeState("CHASING"); 
             return; 
@@ -45,5 +42,18 @@ public class TargetingState : StateComponent
         {
             controller.ChangeState("SHOOTING");
         }
+    }
+
+    public bool TargetAtAim()
+    {
+        Vector3 targetDir = (target.position - transform.position).normalized;
+        float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
+
+        if (Mathf.Abs(dotFactor) > rotThreshold)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Weapon_0
   m_EditorClassIdentifier: 
   attackSpeed: 1.5
-  range: 4.5
+  range: 10
+  bullet: {fileID: 11400000, guid: 405ec2976fa4b3b43a448c5341b82607, type: 2}

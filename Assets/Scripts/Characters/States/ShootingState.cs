@@ -3,20 +3,25 @@ using UnityEngine;
 
 public class ShootingState : StateComponent
 {
+    [SerializeField] private Transform shootPoint;
+    [SerializeField] private TargetingState targetState;
+
     private CharacterManager manager;
     private float attackSpeed;
-    private Transform target;
+    private Transform target
+    { get { return manager.target; } }
 
     private Coroutine shootingRoutine; // should be placed at OnStateExit
 
-    void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         manager = (CharacterManager)controller;
         attackSpeed = manager.stats.attackSpeed;
-        target = manager.target;
     }
 
-    private void OnEnable()
+    protected override void OnStateEnable()
     {
         shootingRoutine = StartCoroutine(Shooting());
     }
@@ -29,18 +34,19 @@ public class ShootingState : StateComponent
 
     private IEnumerator Shooting()
     {
-        Debug.Log("SHOOTING BULLET");
+        manager.bullet.Spawn(shootPoint.position, shootPoint.rotation);
 
         yield return new WaitForSeconds(attackSpeed);
         if (target)
         {
-            if (manager.targetAtRange)
+            if (manager.targetAtRange && targetState.TargetAtAim())
                 shootingRoutine = StartCoroutine(Shooting());
             else
             {
                 manager.ChangeState("TARGETING");
             }
         }
-
+        else
+            manager.ChangeState("CHASING");
     }
 }

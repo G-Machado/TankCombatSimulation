@@ -18,10 +18,9 @@ public class StateComponent : MonoBehaviour
     {
         bool enable = HasActiveState(state);
 
-        if (!enable && this.enabled)
+        if (!enable)
             OnStateDisable();
-
-        if(enabled && !this.enabled)
+        else
             OnStateEnable();
 
         this.enabled = enable;
@@ -37,8 +36,6 @@ public class StateComponent : MonoBehaviour
         return false;
     }
 
-    protected virtual void OnStateEnable()
-    { }
-    protected virtual void OnStateDisable()
-    { }
+    protected virtual void OnStateEnable() { }
+    protected virtual void OnStateDisable() { }
 }
