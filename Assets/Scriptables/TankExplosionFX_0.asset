@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788dc7fa4f1b07240b43f56b4a151cc8, type: 3}
   m_Name: TankExplosionFX_0
   m_EditorClassIdentifier: 
-  prefab: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}
+  prefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
+  duration: 3

@@ -3,7 +3,7 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class CharacterManager : StateController
 {
-    [SerializeField] private CharacterStats scriptableStats;
+    public CharacterStats scriptableStats;
     [SerializeField] private ScriptableFX deathExplosionFX;
     public struct statsData
     {
@@ -34,8 +34,6 @@ public class CharacterManager : StateController
         stats.canonRotSpeed = scriptableStats.canonRotSpeed;
         stats.attackSpeed = scriptableStats.weapon.attackSpeed;
         stats.range = scriptableStats.weapon.range;
-
-        bullet = scriptableStats.weapon.bullet;
     }
 
     void FixedUpdate()
@@ -52,7 +50,9 @@ public class CharacterManager : StateController
         {
             CharacterSpawner.Instance.charactersAlive.Remove(this);
 
-            deathExplosionFX.Spawn(transform.position);
+            if(deathExplosionFX)
+                deathExplosionFX.Spawn(transform.position);
+
             Destroy(this.gameObject);
         }
     }

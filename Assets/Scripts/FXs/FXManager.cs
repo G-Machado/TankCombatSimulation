@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class FXManager : MonoBehaviour
 {
-    [SerializeField] private float fxDuration = 5;
     private ScriptableFX fxStats;
 
     public void SetupData(ScriptableFX fx)
     {
         fxStats = fx;
-        StartCoroutine(DestroyFX(fxDuration));
+        StartCoroutine(DestroyFX(fx.duration));
     }
 
     private IEnumerator DestroyFX(float time)

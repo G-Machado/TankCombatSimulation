@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: BulletExplosionFX_0
   m_EditorClassIdentifier: 
   prefab: {fileID: 180128, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}
+  duration: 4

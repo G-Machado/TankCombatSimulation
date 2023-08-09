@@ -34,7 +34,7 @@ public class ShootingState : StateComponent
 
     private IEnumerator Shooting()
     {
-        manager.bullet.Spawn(shootPoint.position, shootPoint.rotation);
+        manager.scriptableStats.weapon.Shoot(shootPoint.position, shootPoint.rotation);
 
         yield return new WaitForSeconds(attackSpeed);
         if (target)

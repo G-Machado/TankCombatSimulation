@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="TankBattle/FX")]
 public class ScriptableFX : ScriptablePool
 {
+    public float duration;
+
     public void Spawn(Vector3 position)
     {
         GameObject fxClone = pool.Get();
@@ -16,6 +18,4 @@ public class ScriptableFX : ScriptablePool
     {
         pool.Release(obj);
     }
-
-    
 }

@@ -20,7 +20,9 @@ public class ScriptableBullet : ScriptablePool
 
     public void DestroyBullet(GameObject obj)
     {
-        particleFX.Spawn(obj.transform.position);
+        if(particleFX)
+            particleFX.Spawn(obj.transform.position);
+
         pool.Release(obj);
     }
 }
