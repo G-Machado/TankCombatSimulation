@@ -48,7 +48,7 @@ public class CharacterManager : StateController
         
         if (stats.health <= 0)
         {
-            CharacterSpawner.Instance.charactersAlive.Remove(this);
+            BattleManager.Instance.KillCharacter(this);
 
             if(deathExplosionFX)
                 deathExplosionFX.Spawn(transform.position);

@@ -1,44 +1,33 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChasingState : StateComponent
+public class ChasingState : CharacterStateComponent
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform tankBase;
     [SerializeField] private float rotThreshold;
 
-    private CharacterManager manager;
-    private Transform target
-    { get { return manager.target; } }
-    private int movSpeed;
-    private int rotSpeed;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        manager = (CharacterManager)controller;
-
-        movSpeed = manager.stats.movSpeed;
-        rotSpeed = manager.stats.baseRotSpeed;
-    }
+    private int MovSpeed
+    { get { return manager.stats.movSpeed; } }
+    private int RotSpeed
+    { get { return manager.stats.baseRotSpeed; } }
 
     void FixedUpdate()
     {
-        if (!target)
+        if (!Target)
         {
             rb.velocity = Vector3.zero;
+            manager.ChangeState("IDLE"); 
             return;
         }
 
         if(!manager.targetAtRange)
         {
             // Rotate tank base
-            Vector3 targetDir = (target.position - transform.position).normalized;
+            Vector3 targetDir = (Target.position - transform.position).normalized;
             float dotFactor = Vector3.Dot(tankBase.forward, targetDir);
             float yAngle = tankBase.eulerAngles.y;
-            if (dotFactor > 0) yAngle += rotSpeed * .1f;
-            else yAngle -= rotSpeed * .1f;
+            if (dotFactor > 0) yAngle += RotSpeed * .1f;
+            else yAngle -= RotSpeed * .1f;
 
             if (Mathf.Abs(dotFactor) > rotThreshold)
             {
@@ -47,7 +36,7 @@ public class ChasingState : StateComponent
             }
 
             // Move with velocity
-            Vector3 targetVelocity = targetDir * movSpeed;
+            Vector3 targetVelocity = targetDir * MovSpeed;
             rb.velocity = targetVelocity;
         }
         else
@@ -61,10 +50,6 @@ public class ChasingState : StateComponent
     protected override void OnStateEnable()
     {
         if (manager.target == null)
-        {
-            CharacterManager target = CharacterSpawner.Instance.GetRandomTarget(manager);
-            if(target)
-                manager.target = target.transform;
-        }
+            manager.ChangeState("IDLE");
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -964,7 +964,7 @@ GameObject:
   - component: {fileID: 1958479881}
   - component: {fileID: 1958479882}
   m_Layer: 0
-  m_Name: POOLS
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,9 +994,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1958479880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f5c7e6261252f2499bfe8688241128b, type: 3}
+  m_Script: {fileID: 11500000, guid: dceb380d653e249de83c338fe0d6537d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBattleBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBattleFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCharacterDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  charactersAlive:
+  - {fileID: 2141420469}
+  - {fileID: 2121625148}
+  - {fileID: 1742048843}
+  - {fileID: 1872875372}
+  - {fileID: 1749877183}
+  - {fileID: 826833929}
 --- !u!114 &2121625148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1859810872303058587, guid: d74a32c21935674478e3a05c1182dd64, type: 3}

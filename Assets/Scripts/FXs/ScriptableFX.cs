@@ -8,7 +8,7 @@ public class ScriptableFX : ScriptablePool
     public void Spawn(Vector3 position)
     {
         GameObject fxClone = pool.Get();
-        fxClone.transform.parent = BulletSpawner.Instance.transform;
+        fxClone.transform.parent = BattleManager.Instance.transform;
         fxClone.transform.position = position;
 
         fxClone.GetComponent<FXManager>().SetupData(this);

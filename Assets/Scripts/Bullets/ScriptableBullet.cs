@@ -10,7 +10,7 @@ public class ScriptableBullet : ScriptablePool
     public void Spawn(Vector3 position, Quaternion rotation)
     {
         GameObject bulletClone = pool.Get();
-        bulletClone.transform.parent = BulletSpawner.Instance.transform;
+        bulletClone.transform.parent = BattleManager.Instance.transform;
         bulletClone.transform.position = position;
         bulletClone.transform.rotation = rotation;
 

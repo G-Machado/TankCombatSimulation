@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1859810872303058584}
   - component: {fileID: 5808709178841466040}
   - component: {fileID: 6283403892765972543}
+  - component: {fileID: 1237033700143146314}
   - component: {fileID: 6262799339922058913}
   m_Layer: 6
   m_Name: Tank
@@ -406,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleStates:
+  - {fileID: 11400000, guid: 2750ef4850b0f4f32b59e5fa068cd926, type: 2}
   - {fileID: 11400000, guid: 3d0f31f2ce7922b4483e37a27921a1a9, type: 2}
   - {fileID: 11400000, guid: b1717fec091c9584ebbdf180727142d1, type: 2}
   - {fileID: 11400000, guid: 81398ad854c9ed447ae9ce2f2f0f0757, type: 2}
@@ -467,7 +469,22 @@ MonoBehaviour:
   activeStates:
   - {fileID: 11400000, guid: b1717fec091c9584ebbdf180727142d1, type: 2}
   shootPoint: {fileID: 8298476650957736117}
-  targetState: {fileID: 5808709178841466040}
+  aimState: {fileID: 5808709178841466040}
+--- !u!114 &1237033700143146314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859810872303058589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2874d84abae574ac4a7d130988e3cc6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeStates:
+  - {fileID: 11400000, guid: 2750ef4850b0f4f32b59e5fa068cd926, type: 2}
+  checkInterval: 0.5
 --- !u!65 &6262799339922058913
 BoxCollider:
   m_ObjectHideFlags: 0

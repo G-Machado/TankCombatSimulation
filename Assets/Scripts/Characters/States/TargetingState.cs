@@ -1,38 +1,33 @@
 using UnityEngine;
 
-public class TargetingState : StateComponent
+public class TargetingState : CharacterStateComponent
 {
     [SerializeField] private Transform tankCanon;
     [SerializeField] private float rotThreshold;
 
-    private Transform target
-    { get { return manager.target; } }
-    private CharacterManager manager;
-    private int rotSpeed;
+    private int RotSpeed
+    { get { return manager.stats.canonRotSpeed; } }
 
     public bool atAim = false;
 
-    void Start()
-    {
-        manager = (CharacterManager)controller;
-        rotSpeed = manager.stats.canonRotSpeed;
-    }
-
     void FixedUpdate()
     {
-        if (!manager.targetAtRange || target == null)
+        if (Target == null || !manager.targetAtRange)
         { 
-            manager.ChangeState("CHASING"); 
+            manager.ChangeState("IDLE"); 
             return; 
         }
 
-        // Correct tank canon rotation
-        Vector3 targetDir = (target.position - transform.position).normalized;
+        // Calculate aim rotation
+        Vector3 targetDir = (Target.position - transform.position).normalized;
         float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
-        float yAngle = tankCanon.eulerAngles.y;
-        if (dotFactor > 0) yAngle += rotSpeed * .1f;
-        else yAngle -= rotSpeed * .1f;
 
+        // Correct rotation
+        float yAngle = tankCanon.eulerAngles.y;
+        if (dotFactor > 0) yAngle += RotSpeed * .1f;
+        else yAngle -= RotSpeed * .1f;
+
+        // Assign rotation or change state
         if (Mathf.Abs(dotFactor) > rotThreshold)
         {
             tankCanon.rotation =
@@ -46,7 +41,7 @@ public class TargetingState : StateComponent
 
     public bool TargetAtAim()
     {
-        Vector3 targetDir = (target.position - transform.position).normalized;
+        Vector3 targetDir = (Target.position - transform.position).normalized;
         float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
 
         if (Mathf.Abs(dotFactor) > rotThreshold)
