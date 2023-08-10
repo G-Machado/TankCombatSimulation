@@ -13,7 +13,7 @@ public class FXManager : MonoBehaviour
     }
     public void ResetFX()
     {
-        StartCoroutine(DestroyFX(fxStats.duration));
+        StartCoroutine(DestroyFX(fxStats.duration)); // initialize auto-destruction routine
     }
 
     private IEnumerator DestroyFX(float time)

@@ -14,7 +14,7 @@ public class StateComponent : MonoBehaviour
         controller.OnStateChanged.AddListener(OnStateChanged);
     }
 
-    private void OnStateChanged(ScriptableState state)
+    private void OnStateChanged(ScriptableState state) // enable/disable component accordingly to active states
     {
         bool enable = HasActiveState(state);
 
@@ -26,7 +26,7 @@ public class StateComponent : MonoBehaviour
         this.enabled = enable;
     }
 
-    private bool HasActiveState(ScriptableState state)
+    private bool HasActiveState(ScriptableState state) // checks if component can be active during 'state'
     {
         for (int i = 0; i < activeStates.Length; i++)
         {

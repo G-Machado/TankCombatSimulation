@@ -7,22 +7,22 @@ public class StateController : MonoBehaviour
     public UnityEvent<ScriptableState> OnStateChanged;
 
     private int stateIndex = 0;
-    protected ScriptableState currentState
+    protected ScriptableState CurrentState
     { get { return possibleStates[stateIndex]; } }
 
     protected virtual void Start()
     {
-        OnStateChanged.Invoke(currentState);
+        OnStateChanged.Invoke(CurrentState);
     }
 
-    public void ChangeState(string stateName)
+    public void ChangeState(string stateName) 
     {
         for (int i = 0; i < possibleStates.Length; i++)
         {
             if (possibleStates[i].name.Equals(stateName))
             {
                 stateIndex = i;
-                OnStateChanged.Invoke(currentState);
+                OnStateChanged.Invoke(CurrentState);
                 return;
             }
         }

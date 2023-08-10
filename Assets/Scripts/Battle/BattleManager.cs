@@ -12,6 +12,7 @@ public class BattleManager : Singleton<BattleManager>
     [HideInInspector] public List<CharacterManager> charactersAlive;
     [SerializeField] private Text winnerUI;
 
+    // Returns a random target from characters alive excluding the requester 
     public CharacterManager GetRandomTarget(CharacterManager attacker)
     {
         if (charactersAlive.Count <= 1) return null;
@@ -21,7 +22,7 @@ public class BattleManager : Singleton<BattleManager>
         int index = 0;
         for (int i = 0; i < charactersAlive.Count; i++)
         {
-            if (charactersAlive[i].Equals(attacker)) continue;
+            if (charactersAlive[i].Equals(attacker)) continue; // exclude the requester
 
             copyAlive[index] = charactersAlive[i];
             index++;
@@ -38,7 +39,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         OnBattleFinish?.Invoke();
 
-        if (winnerUI)
+        if (winnerUI) 
         {
             winnerUI.text =
                 $"{charactersAlive[0].gameObject.name} WINS";
@@ -48,12 +49,11 @@ public class BattleManager : Singleton<BattleManager>
 
     public void KillCharacter(CharacterManager character)
     {
-        if (charactersAlive.Count <= 1) return;
-
         charactersAlive.Remove(character);
+
         OnCharacterDeath?.Invoke(character);
 
-        if (charactersAlive.Count <= 1)
+        if (charactersAlive.Count <= 1) // battle end condition
             EndBattle();
     }
 }

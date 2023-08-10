@@ -38,6 +38,7 @@ public class ScriptablePool : ScriptableObject
         Destroy(obj);
     }
 
-    protected virtual void SetupObject(GameObject obj) { }
-    protected virtual void ResetObject(GameObject obj) { }
+    // Helper functions to configure objects
+    protected virtual void SetupObject(GameObject obj) { } // called at object creation
+    protected virtual void ResetObject(GameObject obj) { } // called at object `Get()` from pool
 }

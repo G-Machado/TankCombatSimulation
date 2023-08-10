@@ -23,7 +23,7 @@ public class ScriptableBullet : ScriptablePool
         bManager.SetupData(this);
     }
 
-    public void DestroyBullet(GameObject obj)
+    public void DestroyBullet(GameObject obj) // Releases bullet back to the pool
     {
         if(particleFX)
             particleFX.Spawn(obj.transform.position);

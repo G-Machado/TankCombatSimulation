@@ -28,14 +28,12 @@ public class ShootingState : CharacterStateComponent
         yield return new WaitForSeconds(AttackSpeed);
         if (Target)
         {
-            if (manager.targetAtRange && aimState.TargetAtAim)
+            if (manager.targetAtRange && aimState.TargetAtAim) // if target is still at aim, shoots
                 shootingRoutine = StartCoroutine(Shooting());
-            else
-            {
+            else                                               // else, get back to aiming
                 manager.ChangeState("TARGETING");
-            }
         }
-        else
+        else // if there is no target, return to idle state
             manager.ChangeState("IDLE");
     }
 }

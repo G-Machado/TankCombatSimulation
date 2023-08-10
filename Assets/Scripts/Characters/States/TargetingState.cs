@@ -14,7 +14,7 @@ public class TargetingState : CharacterStateComponent
 
     void FixedUpdate()
     {
-        if (Target == null)
+        if (Target == null) // if there is no target, return to idle state
         { 
             manager.ChangeState("IDLE"); 
             return; 
@@ -34,7 +34,7 @@ public class TargetingState : CharacterStateComponent
         if (dotFactor > 0) yAngle += RotSpeed * .1f;
         else yAngle -= RotSpeed * .1f;
 
-        // Assign rotation or change state
+        // Assign rotation or start shooting
         if (TargetAtAim)
         {
             tankCanon.rotation =

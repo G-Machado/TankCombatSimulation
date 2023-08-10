@@ -24,10 +24,11 @@ public class CharacterManager : StateController
     private void Awake()
     {
         SetupData();
+
         BattleManager.Instance.charactersAlive.Add(this);
     }
 
-    public void SetupData()
+    public void SetupData() 
     {
         stats.health = scriptableStats.health;
         stats.movSpeed = scriptableStats.movSpeed;
@@ -39,7 +40,7 @@ public class CharacterManager : StateController
 
     void FixedUpdate()
     {
-        if(target)
+        if(target) // calculates targetAtRange so states scripts won't have to 
             targetAtRange = (target.position - transform.position).sqrMagnitude < stats.range * stats.range;
     }
 
@@ -47,10 +48,12 @@ public class CharacterManager : StateController
     {
         stats.health -= damage;
 
+        // configure health bar slider
         healthBar.gameObject.SetActive(true);
         healthBar.value = (stats.health + .01f) / scriptableStats.health;
 
-        if (stats.health <= 0)
+        if (stats.health <= 0 &&
+            BattleManager.Instance.charactersAlive.Count > 1) // If isn't the last tank, perform death
         {
             BattleManager.Instance.KillCharacter(this);
 

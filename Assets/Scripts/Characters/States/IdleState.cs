@@ -21,14 +21,14 @@ public class IdleState : CharacterStateComponent
             StopCoroutine(checkRoutine);
     }
 
-    private IEnumerator CheckingForCharacters(float interval)
+    private IEnumerator CheckingForCharacters(float interval) // tries to get a new target every 'checkInterval' seconds
     {
         yield return new WaitForSeconds(interval);
 
         CharacterManager newTarget = 
-            BattleManager.Instance.GetRandomTarget(manager);
+            BattleManager.Instance.GetRandomTarget(manager); 
 
-        if(newTarget != null)
+        if(newTarget != null) 
         {
             manager.target = newTarget.transform;
             manager.ChangeState("CHASING");

@@ -13,10 +13,10 @@ public class ChasingState : CharacterStateComponent
 
     void FixedUpdate()
     {
-        if (!Target)
+        if (!Target) // if there is no target, return to idle state
         {
             rb.velocity = Vector3.zero;
-            manager.ChangeState("IDLE"); 
+            manager.ChangeState("IDLE");
             return;
         }
 
@@ -41,7 +41,7 @@ public class ChasingState : CharacterStateComponent
         }
         else
         {
-            // Change state
+            // Start aiming to shot
             rb.velocity = Vector3.zero;
             controller.ChangeState("TARGETING");
         }
