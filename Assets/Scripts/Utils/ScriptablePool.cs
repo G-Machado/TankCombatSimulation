@@ -12,7 +12,7 @@ public class ScriptablePool : ScriptableObject
         {
             if(_pool == null)
             {
-                _pool = new ObjectPool<GameObject>(CreateObject, GetObject, ReleaseObject, DestroyObject);
+                _pool = new ObjectPool<GameObject>(CreateObject, GetObject, ReleaseObject, DestroyObject, true, 10, 100);
             }
             return _pool; 
         }

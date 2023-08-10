@@ -48,6 +48,8 @@ public class BattleManager : Singleton<BattleManager>
 
     public void KillCharacter(CharacterManager character)
     {
+        if (charactersAlive.Count <= 1) return;
+
         charactersAlive.Remove(character);
         OnCharacterDeath?.Invoke(character);
 
