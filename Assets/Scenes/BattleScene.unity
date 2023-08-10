@@ -230,7 +230,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565738375}
-  - component: {fileID: 565738376}
   m_Layer: 0
   m_Name: Tanks
   m_TagString: Untagged
@@ -259,25 +258,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &565738376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565738374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52685500adbea0642b883264e7b172a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charactersAlive:
-  - {fileID: 2141420469}
-  - {fileID: 2121625148}
-  - {fileID: 1742048843}
-  - {fileID: 1872875372}
-  - {fileID: 1749877183}
-  - {fileID: 826833929}
 --- !u!1 &818804351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +993,7 @@ MonoBehaviour:
   - {fileID: 1872875372}
   - {fileID: 1749877183}
   - {fileID: 826833929}
+  battleStarted: 0
 --- !u!114 &2121625148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1859810872303058587, guid: d74a32c21935674478e3a05c1182dd64, type: 3}

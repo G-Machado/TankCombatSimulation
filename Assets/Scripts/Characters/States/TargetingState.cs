@@ -12,10 +12,15 @@ public class TargetingState : CharacterStateComponent
 
     void FixedUpdate()
     {
-        if (Target == null || !manager.targetAtRange)
+        if (Target == null)
         { 
             manager.ChangeState("IDLE"); 
             return; 
+        }
+        else if(!manager.targetAtRange)
+        {
+            manager.ChangeState("CHASING");
+            return;
         }
 
         // Calculate aim rotation

@@ -46,10 +46,4 @@ public class ChasingState : CharacterStateComponent
             controller.ChangeState("TARGETING");
         }
     }
-
-    protected override void OnStateEnable()
-    {
-        if (manager.target == null)
-            manager.ChangeState("IDLE");
-    }
 }

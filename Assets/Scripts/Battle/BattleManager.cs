@@ -2,14 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BattleManager : MonoBehaviour
+public class BattleManager : Singleton<BattleManager>
 {
-    public static BattleManager Instance; // polish singleton pattern
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     public UnityEvent OnBattleBegin;
     public UnityEvent OnBattleFinish;
     public UnityEvent<CharacterManager> OnCharacterDeath;

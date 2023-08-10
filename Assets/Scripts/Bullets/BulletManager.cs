@@ -11,18 +11,18 @@ public class BulletManager : MonoBehaviour
         public int speed;
     }
     private bulletData stats;
-    private ScriptableBullet _bulletStats;
+    private ScriptableBullet bulletStats;
 
     private bool activated = true;
     private Coroutine destroyRoutine;
 
     public void SetupData(ScriptableBullet bulletStats)
     {
-        if (!_bulletStats)
+        if (!this.bulletStats)
         {
             stats.damage = bulletStats.damage;
             stats.speed = bulletStats.speed;
-            _bulletStats = bulletStats;
+            this.bulletStats = bulletStats;
         }
 
         rb.velocity = transform.forward * stats.speed;
@@ -38,15 +38,13 @@ public class BulletManager : MonoBehaviour
         CharacterManager enemyManager = other.GetComponent<CharacterManager>();
         enemyManager.DealDamage(stats.damage);
 
-        Debug.Log("Spawn explosion FX!");
-
         rb.velocity = Vector3.zero;
 
         if(destroyRoutine != null)
             StopCoroutine(destroyRoutine);
 
         activated = false;
-        _bulletStats.DestroyBullet(this.gameObject);
+        bulletStats.DestroyBullet(this.gameObject);
     }
 
     private IEnumerator DestroyBullet(float time)
@@ -54,6 +52,6 @@ public class BulletManager : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         activated = false;
-        _bulletStats.DestroyBullet(this.gameObject);
+        bulletStats.DestroyBullet(this.gameObject);
     }
 }
