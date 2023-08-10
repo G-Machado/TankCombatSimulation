@@ -6,7 +6,6 @@ public class CharacterStateComponent : StateComponent
     protected Transform Target
     {
         get { return manager.target; }
-        set { manager.target = value; }
     }
 
     protected override void Awake()

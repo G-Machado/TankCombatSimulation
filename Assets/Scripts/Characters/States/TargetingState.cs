@@ -7,8 +7,10 @@ public class TargetingState : CharacterStateComponent
 
     private int RotSpeed
     { get { return manager.stats.canonRotSpeed; } }
+    public bool TargetAtAim
+    { get { return Mathf.Abs(dotFactor) > rotThreshold; } }
 
-    public bool atAim = false;
+    private float dotFactor = 0;
 
     void FixedUpdate()
     {
@@ -23,9 +25,9 @@ public class TargetingState : CharacterStateComponent
             return;
         }
 
-        // Calculate aim rotation
+        // Calculate aim
         Vector3 targetDir = (Target.position - transform.position).normalized;
-        float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
+        dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
 
         // Correct rotation
         float yAngle = tankCanon.eulerAngles.y;
@@ -33,27 +35,14 @@ public class TargetingState : CharacterStateComponent
         else yAngle -= RotSpeed * .1f;
 
         // Assign rotation or change state
-        if (Mathf.Abs(dotFactor) > rotThreshold)
+        if (TargetAtAim)
         {
             tankCanon.rotation =
                 Quaternion.Euler(tankCanon.eulerAngles.x, yAngle, tankCanon.eulerAngles.z);
         }
         else
         {
-            controller.ChangeState("SHOOTING");
+            manager.ChangeState("SHOOTING");
         }
-    }
-
-    public bool TargetAtAim()
-    {
-        Vector3 targetDir = (Target.position - transform.position).normalized;
-        float dotFactor = Vector3.Dot(tankCanon.forward, targetDir);
-
-        if (Mathf.Abs(dotFactor) > rotThreshold)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

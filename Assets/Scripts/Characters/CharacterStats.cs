@@ -5,7 +5,8 @@ public class CharacterStats : ScriptableObject
 {
     public int health;
     public int movSpeed;
-    public int baseRotSpeed; // y axis
-    public int canonRotSpeed; // y axis
-    public WeaponStats weapon;
+    public int baseRotSpeed; 
+    public int canonRotSpeed;
+    public ScriptableWeapon weapon;
+    public ScriptableFX deathExplosionFX;
 }

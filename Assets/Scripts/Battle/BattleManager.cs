@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class BattleManager : Singleton<BattleManager>
@@ -8,8 +9,8 @@ public class BattleManager : Singleton<BattleManager>
     public UnityEvent OnBattleFinish;
     public UnityEvent<CharacterManager> OnCharacterDeath;
 
-    public List<CharacterManager> charactersAlive; // this could be an array
-    public bool battleStarted = false;
+    [HideInInspector] public List<CharacterManager> charactersAlive;
+    [SerializeField] private Text winnerUI;
 
     public CharacterManager GetRandomTarget(CharacterManager attacker)
     {
@@ -31,16 +32,18 @@ public class BattleManager : Singleton<BattleManager>
 
     public void StartBattle()
     {
-        battleStarted = true;
-
         OnBattleBegin?.Invoke();
     }
-
     private void EndBattle()
     {
-        battleStarted = false;
-
         OnBattleFinish?.Invoke();
+
+        if (winnerUI)
+        {
+            winnerUI.text =
+                $"{charactersAlive[0].gameObject.name} WINS";
+            winnerUI.gameObject.SetActive(true);
+        }
     }
 
     public void KillCharacter(CharacterManager character)

@@ -9,12 +9,17 @@ public class ScriptableBullet : ScriptablePool
 
     public void Spawn(Vector3 position, Quaternion rotation)
     {
-        GameObject bulletClone = pool.Get();
+        GameObject bulletClone = Pool.Get();
         bulletClone.transform.parent = BattleManager.Instance.transform;
         bulletClone.transform.position = position;
         bulletClone.transform.rotation = rotation;
 
-        BulletManager bManager = bulletClone.GetComponent<BulletManager>();
+        bulletClone.GetComponent<BulletManager>().ResetBullet();
+    }
+
+    protected override void SetupObject(GameObject obj)
+    {
+        BulletManager bManager = obj.GetComponent<BulletManager>();
         bManager.SetupData(this);
     }
 
@@ -23,6 +28,6 @@ public class ScriptableBullet : ScriptablePool
         if(particleFX)
             particleFX.Spawn(obj.transform.position);
 
-        pool.Release(obj);
+        Pool.Release(obj);
     }
 }

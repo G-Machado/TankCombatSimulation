@@ -10,7 +10,10 @@ public class FXManager : MonoBehaviour
     public void SetupData(ScriptableFX fx)
     {
         fxStats = fx;
-        StartCoroutine(DestroyFX(fx.duration));
+    }
+    public void ResetFX()
+    {
+        StartCoroutine(DestroyFX(fxStats.duration));
     }
 
     private IEnumerator DestroyFX(float time)

@@ -28,7 +28,7 @@ public class ShootingState : CharacterStateComponent
         yield return new WaitForSeconds(AttackSpeed);
         if (Target)
         {
-            if (manager.targetAtRange && aimState.TargetAtAim())
+            if (manager.targetAtRange && aimState.TargetAtAim)
                 shootingRoutine = StartCoroutine(Shooting());
             else
             {

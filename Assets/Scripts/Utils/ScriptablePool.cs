@@ -6,7 +6,7 @@ public class ScriptablePool : ScriptableObject
     [SerializeField] private GameObject prefab;
 
     private ObjectPool<GameObject> _pool;
-    protected ObjectPool<GameObject> pool
+    protected ObjectPool<GameObject> Pool
     {
         get 
         {
@@ -20,11 +20,14 @@ public class ScriptablePool : ScriptableObject
 
     private GameObject CreateObject()
     {
-        return Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        GameObject objectClone = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        SetupObject(objectClone);
+        return objectClone;
     }
     private void GetObject(GameObject obj)
     {
         obj.SetActive(true);
+        ResetObject(obj);
     }
     private void ReleaseObject(GameObject obj)
     { 
@@ -34,4 +37,7 @@ public class ScriptablePool : ScriptableObject
     {
         Destroy(obj);
     }
+
+    protected virtual void SetupObject(GameObject obj) { }
+    protected virtual void ResetObject(GameObject obj) { }
 }

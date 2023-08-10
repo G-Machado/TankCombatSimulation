@@ -13,7 +13,6 @@ public class IdleState : CharacterStateComponent
 
         checkRoutine = StartCoroutine(CheckingForCharacters(checkInterval));
     }
-
     protected override void OnStateDisable()
     {
         base.OnStateDisable();
@@ -31,7 +30,7 @@ public class IdleState : CharacterStateComponent
 
         if(newTarget != null)
         {
-            Target = newTarget.transform;
+            manager.target = newTarget.transform;
             manager.ChangeState("CHASING");
         }
         else

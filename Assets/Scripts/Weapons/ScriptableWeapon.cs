@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "TankBattle/WeaponStats")]
-public class WeaponStats : ScriptableObject
+public class ScriptableWeapon : ScriptableObject
 {
     public float attackSpeed;
     public float range;

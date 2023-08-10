@@ -7,15 +7,24 @@ public class ScriptableFX : ScriptablePool
 
     public void Spawn(Vector3 position)
     {
-        GameObject fxClone = pool.Get();
+        GameObject fxClone = Pool.Get();
         fxClone.transform.parent = BattleManager.Instance.transform;
         fxClone.transform.position = position;
+    }
 
-        fxClone.GetComponent<FXManager>().SetupData(this);
+    protected override void SetupObject(GameObject obj)
+    {
+        FXManager fxManager = obj.GetComponent<FXManager>();
+        fxManager.SetupData(this);
+    }
+    protected override void ResetObject(GameObject obj)
+    {
+        FXManager fxManager = obj.GetComponent<FXManager>();
+        fxManager.ResetFX();
     }
 
     public void DestroyFX(GameObject obj)
     {
-        pool.Release(obj);
+        Pool.Release(obj);
     }
 }
