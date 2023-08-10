@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddfcd1e8b01e0544ab876d1fed6125f0, type: 3}
-  m_Name: Weapon_0
+  m_Name: Weapon_Sniper
   m_EditorClassIdentifier: 
-  attackSpeed: 1.5
-  range: 10
-  bullet: {fileID: 11400000, guid: 405ec2976fa4b3b43a448c5341b82607, type: 2}
+  attackSpeed: 2
+  range: 30
+  bullet: {fileID: 11400000, guid: fd5dd4a3074014476b8056148e547978, type: 2}
   shotExplosionFX: {fileID: 11400000, guid: d9cf7fd22b07e418cad80967f613490f, type: 2}

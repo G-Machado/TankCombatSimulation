@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17ee72fb4a3fdf84a98d95ee78301347, type: 3}
-  m_Name: Stat_0
+  m_Name: Stat_TankRed
   m_EditorClassIdentifier: 
   health: 100
-  movSpeed: 2
-  baseRotSpeed: 25
-  canonRotSpeed: 12
-  weapon: {fileID: 11400000, guid: f9f603d813a30f046bb9435764daa8e9, type: 2}
+  movSpeed: 5
+  baseRotSpeed: 40
+  canonRotSpeed: 20
+  weapon: {fileID: 11400000, guid: 45f98f36b5cd24bd9894528bdebdbe3d, type: 2}
+  deathExplosionFX: {fileID: 11400000, guid: f965c5ce7fdd0cb409e8646ac262af2b, type: 2}
